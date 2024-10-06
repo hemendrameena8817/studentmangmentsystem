@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2em;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Add New Student Button */
+        a.add-btn {
+            display: inline-block;
+            background-color: #28a745; /* Green for adding */
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-bottom: 20px;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+        }
+
+        a.add-btn:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+
+        /* Styling the student list */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        ul li {
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        ul li a {
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            color: white;
+            font-size: 0.9em;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Edit button */
+        ul li a.edit-btn {
+            background-color: #007bff; /* Blue for edit */
+        }
+
+        ul li a.edit-btn:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        /* Delete button */
+        ul li a.delete-btn {
+            background-color: #d9534f; /* Red for delete */
+        }
+
+        ul li a.delete-btn:hover {
+            background-color: #c9302c; /* Darker red on hover */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Student List</h1>
+
+    <!-- Add New Student Button -->
+    <a href="{% url 'student_create' %}" class="add-btn">Add New Student</a>
+
+    <!-- Student List -->
+    <ul>
+        {% for student in students %}
+            <li>
+                {{ student.first_name }} {{ student.last_name }}
+                <span>
+                    <a href="{% url 'student_update' student.id %}" class="edit-btn">Edit</a>
+                    <a href="{% url 'student_delete' student.id %}" class="delete-btn">Delete</a>
+                </span>
+            </li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
